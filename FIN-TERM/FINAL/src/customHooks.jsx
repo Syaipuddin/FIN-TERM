@@ -22,25 +22,35 @@ export const fetcher = async (url, options) => {
 export function useFetch(url, options){
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const prevData = usePrevious(data);
 
-  const fetcher = async () => {
-    const response = await fetch(url, options? options : null);
-    
-    if(response.ok){
-      const json = await response.json();
-      setData(json)
 
-    } else {
-      const json = await response.json();
-      setError(json);
-
-    }
-  }
   useEffect(() => {
+
+    const fetcher = async () => {
+      setIsLoading(true);
+      const response = await fetch(url, options? options : null);
+      
+      if(response.ok){
+        const json = await response.json();
+        if(prevData !== json){
+          setData(json)
+        }
+        setIsLoading(false);
+  
+      } else {
+        const json = await response.json();
+        setError(json);
+        setIsLoading(false);
+  
+      }
+    }
 
     fetcher();
 
-  })
+   
+  }, [options, url])
 
-  return {data, error};
+  return {data, error, isLoading};
 }

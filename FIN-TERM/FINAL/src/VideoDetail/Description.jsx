@@ -21,10 +21,9 @@ export default function Description({description}){
                 w='100%'
                 >
                 <Text
-                    
-                    
                     textColor='white'
                     fontSize={['12px', '14px']}
+                    noOfLines={4}
                 >{description.desc}</Text>
             </Box>
         </Box>

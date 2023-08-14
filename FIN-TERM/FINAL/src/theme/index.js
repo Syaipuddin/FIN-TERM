@@ -5,7 +5,7 @@ const customTheme = extendTheme({
     global : {
       body : {
         fontFamily : `'Jost Variable', sans-serif`,
-        bgGradient :'radial(71.66% 71.65% at 50.00% 104.37%, rgba(78, 79, 75, 0.76) 0%, #000 100%)',
+        bg : '#4D4D4D',
         minHeight : '100vh',
         minWidth : ['98vw','99vw'],
         

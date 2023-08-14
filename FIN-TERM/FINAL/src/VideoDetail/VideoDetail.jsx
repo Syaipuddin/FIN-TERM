@@ -1,34 +1,31 @@
 import { Flex, Hide, Show, Grid, GridItem} from '@chakra-ui/react'
-import {useState, useEffect } from 'react'
-// import Header from '../Header/Header'
+import { useEffect, useState  } from 'react'
 import Video from './Video'
 import Products from './Products'
 import Description from './Description'
 import CommentsTab from './Comment'
 import { useParams } from 'react-router-dom'
-// import { usePrevious, fetcher} from '../customHooks'
+import { useFetch } from '../customHooks'
+
 
 export default function VideoDetail() {
-    const [data, setData] = useState(null);
+    const { id } = useParams();
+    const {data} = useFetch(`/api/video/${id}`)
     const [description, setDescription] = useState({
         location : '0',
-        desc : 'Empty Desc'
+        desc : ``
     });
-    const { id } = useParams();
-
 
     useEffect(() => {
-        const dataFetch = async() => {
-            const response = await fetch(`/api/video/${id}`);
-            const json = await response.json();   
-            console.log(id);
-                setData(json);
-                setDescription({location : '0', desc : `${json.data.products[0]?.productId.description}`})
+        if(data !== null){
+            if(description.desc === ''){
+                if(data?.data?.products.length > 0){
+                    setDescription({...description, location : 0, desc : data?.data?.products[0].productId.description})
+                }
+            }
         }
 
-            dataFetch();
-            
-    }, [])
+    }, [data])
 
     return(
         <Flex align='center' direction='column'>

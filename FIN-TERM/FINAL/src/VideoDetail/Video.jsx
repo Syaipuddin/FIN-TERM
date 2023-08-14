@@ -29,7 +29,6 @@ export default function Video({data}){
     return(
         <Box
             w={['90vw', '90vw', '100%', '100%']}
-            // h={['50vw', '50vw', '74.8%', '100%']}
             borderRadius='5px'
             mt={['4vh', '4vh', '0']}
             mb={['2vw', '0.7vw']}

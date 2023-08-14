@@ -1,37 +1,46 @@
 import { ViewIcon } from '@chakra-ui/icons'
+import { useState } from 'react'
 import { Box, Flex, GridItem, Text, SimpleGrid } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { usePrevious, fetcher } from '../customHooks';
+import { useFetch } from '../customHooks'
 
+function MockVideo(){  
+    const [arr] = useState([1,2,3,4,5,6])
+    
+    const mockVideo = arr.map(e => {
+        return(
+            <Box 
+                bg='#353333'
+                borderRadius='10px'
+                key={e} 
+                    >
+                <GridItem 
+                    as='button' 
+                    height={['79vw','55vw', '40vw', '30vw']}
+                    width={['45vw','30vw', '23vw', '15.5vw']}
+                    borderRadius='10px'
+                    display='flex'
+                    flexDir='column'
+                    justifyContent='space-between' >
+                    </GridItem> 
+            </Box>
+        )
+    })
+ 
+    return(
+        <>
+            {mockVideo}
+        </>
+    )
+}
 
 export default function Videos(){
-    const [videos, setVideos] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const prevVideos = usePrevious({videos});
-
-
-    useEffect(() => { 
-
-        const dataFetch = async() => {
-            const response = await fetcher('/api/videos');
-                if(prevVideos !== response)
-                setVideos(response.data);
-        }
-            dataFetch();
-
-        console.log(isLoading)
-        return(() => {
-            setIsLoading(false);
-        })
-
-    }, [])
-
+    const { data : videos, isLoading} = useFetch('/api/videos')
 
     let videoList = '';
 
     if(videos !== null){
-        videoList = videos.map(e => {
+        videoList = videos.data.map(e => {
             return(
                 <Link 
                     key={e._id}
@@ -72,7 +81,7 @@ export default function Videos(){
                                     textColor='white'
                                     textAlign='start'
                                     fontSize='14px'
-                                    noOfLines='1'
+                                    noOfLines='2'
                                     >
                                         {e.title}
                                     </Text>
@@ -92,11 +101,13 @@ export default function Videos(){
             }
         )
     }
+    
+
 
     return(
         <Flex my='3vh' width='100vw' display='flex' justify='center'>
             <SimpleGrid columns={[2, 3, 4, 6]} spacing={2}>
-                {isLoading? <h1>Loading</h1> : videoList}
+                {isLoading? <MockVideo/> : videoList}
             </SimpleGrid>
         </Flex>
     )

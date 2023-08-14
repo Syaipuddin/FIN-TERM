@@ -1,5 +1,4 @@
 import Home from "./Home/Home"
-import Header from "./Header/Header"
 import { Box } from '@chakra-ui/react'
 import {
   BrowserRouter as Router,
@@ -17,7 +16,6 @@ function App() {
       overflowY='scroll'
         >
        <Router>
-          <Header />
           <Switch>
               <Route exact path='/'>
                 <Home />

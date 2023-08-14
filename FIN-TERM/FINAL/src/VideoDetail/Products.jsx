@@ -30,7 +30,6 @@ function ActiveProduct({e, description, setDescription, index}){
                         color= {description?.location == index ? 'black' : 'white'}
                         fontSize='12px'
                         fontWeight='bold'
-                        whiteSpace='nowrap'
                         >{e.productId.title}</Text>
                 </Show>
             </Box>
@@ -80,6 +79,7 @@ function ProductList({data, description, setDescription}){
 
 export default function Products({data, description, setDescription}){
 
+
     return(
         <Box
             bg='#353333'
@@ -98,7 +98,6 @@ export default function Products({data, description, setDescription}){
             <Flex 
             width='100%'
             h='80%'
-            // my='3vh'
             >
                 <ProductList 
                     data={data}

@@ -29,8 +29,8 @@ function CommentList({data}){
                 borderBottom='solid #474646 1px'
                 >
                     <Avatar 
-                        // src={e.avatar}
-                        name={e.commentId.name}
+                        src={e?.avatar}
+                        name={e.commentId.username}
                         size={['sm', 'md', 'xs']}
                          />
                     <Box
@@ -57,9 +57,6 @@ function CommentList({data}){
             flexDir='column'
             overflowY='scroll'
             sx={{
-                '&::-webkit-scrollbar' : {
-                    // display : 'none'
-                },
                 '&::-webkit-scrollbar-thumb' : {
                     borderRadius : '10px',
                     bg : '#636060'
