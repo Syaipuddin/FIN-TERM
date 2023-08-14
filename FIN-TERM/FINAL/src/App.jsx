@@ -6,14 +6,16 @@ import {
   Route, 
   Switch } from 'react-router-dom'
 import VideoDetail from "./VideoDetail/VideoDetail"
-import AddVideo from "./FormsPage/AddVideo"
-import AddProduct from "./FormsPage/AddProduct"
+// import AddVideo from "./FormsPage/AddVideo"
+// import AddProduct from "./FormsPage/AddProduct"
 
 
 function App() {
 
   return (
-    <Box>
+    <Box
+      overflowY='scroll'
+        >
        <Router>
           <Header />
           <Switch>
@@ -23,12 +25,13 @@ function App() {
               <Route path="/video-detail/:id">
                 <VideoDetail />
               </Route>
-              <Route path='/add-video'>
+              {/* On next Patch*/}
+              {/* <Route path='/add-video'>
                 <AddVideo />
               </Route>
               <Route patk='/add-product'>
                 <AddProduct />
-              </Route>
+              </Route> */}
           </Switch>
        </Router>
     </Box>

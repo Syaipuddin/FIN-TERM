@@ -1,21 +1,48 @@
-import { Box, Image } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
+import Youtube from 'react-youtube'
 
-export default function Video(){
+function YTVideo({data}){
+    const opts ={
+        width : '720',
+        height : '480'
+    }
+    if(data !== null){
+        return(
+            <Box    
+                w='100%'
+                h='100%'
+                >
+                <Youtube 
+                    videoId={data?.data?.ytId} 
+                    iframeClassName='youtube'
+                    opts={opts}
+                        />
+            </Box>
+        )
+    }
+    }
+
+export default function Video({data}){
+
 
     return(
         <Box
             w={['90vw', '90vw', '100%', '100%']}
-            h={['50vw', '50vw', '74.8%', '100%']}
+            // h={['50vw', '50vw', '74.8%', '100%']}
             borderRadius='5px'
-            mt={['15vh', '15vh', '0']}
+            mt={['4vh', '4vh', '0']}
             mb={['2vw', '0.7vw']}
         >
-            <Image
-                src='https://picsum.photos/720'
-                w='100%'
-                h='100%'
-                borderRadius='5px'
-            />  
+            { data? <YTVideo data={data} />: null }
         </Box>
     )
+}
+
+Video.propTypes = {
+    data : PropTypes.object
+}
+
+YTVideo.propTypes = {
+    data : PropTypes.object
 }

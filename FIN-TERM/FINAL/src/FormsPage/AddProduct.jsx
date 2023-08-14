@@ -26,6 +26,7 @@ function Title(){
     )
 }
 function Price(){
+
     return(
         <Box
             mb='2vh'
@@ -75,6 +76,12 @@ function FileInput(){
 
 
 export default function AddProduct() {
+    const [body, setBody] = useState({
+        title : '',
+        price : '',
+        url : '',
+        
+    })
 
     return(
         <Flex
@@ -94,7 +101,7 @@ export default function AddProduct() {
 
                     >
                     <Header />
-                    <Title />
+                    <Title setTitle={setTitle}/>
                     <Price />
                     <Url />
                     <FileInput />

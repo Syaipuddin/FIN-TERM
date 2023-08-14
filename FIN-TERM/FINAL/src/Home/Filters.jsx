@@ -68,7 +68,7 @@ export default function Filters() {
         )
     })
     return(
-        <Box mt='15vh' mx='2vw'>
+        <Box mt='4vh' mx='2vw'>
             <List display='flex' gap='12px'>
                 {filterList}
             </List>

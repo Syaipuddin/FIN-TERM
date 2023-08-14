@@ -6,7 +6,9 @@ import Videos from "./Videos"
 export default function Home() {
 
     return(
-        <Box>
+        <Box
+            overflowX='hidden'
+            >
             <Filters />
             <Videos />
         </Box>
